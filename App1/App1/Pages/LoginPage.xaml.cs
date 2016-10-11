@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using App1.ViewModels;
 using Xamarin.Forms;
 
-namespace App1
+namespace App1.Pages
 {
-    public partial class MainPage : ContentPage
+    public partial class LoginPage : ContentPage
     {
-        public MainPage()
+        public LoginPage()
         {
             InitializeComponent();
+            BindingContext= new LoginPageViewModel();
         }
     }
 }
