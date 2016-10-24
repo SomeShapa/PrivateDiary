@@ -16,6 +16,8 @@ namespace App1
             InitializeComponent();
             MainNavigation = new NavigationPage(new Pages.LoginPage());
             MainPage =MainNavigation;
+            DatabaseService.Init();
+          
         }
 
         protected override void OnStart()

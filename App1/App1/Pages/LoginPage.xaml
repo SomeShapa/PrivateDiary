@@ -9,14 +9,15 @@
       WidthRequest="200"
       FontSize="17"
       Placeholder="Password" 
-      IsPassword="True"/>
+      IsPassword="True"
+      Text="{Binding Password}"/>
   </Frame>
 <Button VerticalOptions="Center"
         WidthRequest="250" 
         BorderColor="Black" 
         BorderWidth="3" 
         HeightRequest="100"
-        Text="Log In"
+        Text="{Binding ButtonText}"
         FontSize="20" Command="{Binding LogInCommand}"/>
 </StackLayout>
 </ContentPage>

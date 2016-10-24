@@ -1,21 +1,82 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Akavache;
+using App1.Pages;
 using Xamarin.Forms;
 
 namespace App1.ViewModels
 {
-    public class LoginPageViewModel
+    public class LoginPageViewModel:BaseViewModel
     {
-         public ICommand LogInCommand { get; set; }
+        private LoginInfo _userProfile;
+        private string _buttonText;
+        private ICommand _logInCommand;
+
+        public ICommand LogInCommand
+        {
+            get { return _logInCommand; }
+            set
+            {
+                if (Equals(value, _logInCommand)) return;
+                _logInCommand = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Password { get; set; }
+
+        public string ButtonText
+        {
+            get { return _buttonText; }
+            set
+            {
+                if (value == _buttonText) return;
+                _buttonText = value;
+                OnPropertyChanged();
+            }
+        }
 
         public LoginPageViewModel()
         {
-            LogInCommand=new Command(async () => await LogIn());
+            GetUserProfile();
+           
+        }
+
+        private async Task CreateProfile()
+        {
+            await DatabaseService.SetCurrentUserProfile(new LoginInfo(null, Password));
+            await App.MainNavigation.PushAsync(new ScrollPage(), true);
+        }
+
+        private async void GetUserProfile()
+        {
+            _userProfile = await DatabaseService.GetCurrentUserProfile();
+            ButtonText = _userProfile != null ? "Log In" : "Save password";
+            LogInCommand = _userProfile != null
+               ? new Command(async () => await LogIn())
+               : new Command(async () => await CreateProfile());
         }
 
         private async Task LogIn()
         {
-            await App.MainNavigation.PushAsync(new ContentPage(),true);
+             if (!String.IsNullOrWhiteSpace(Password))
+             {
+                 if (CheckPassword(Password))
+                 {
+                     await App.MainNavigation.PushAsync(new ScrollPage(), true);
+                 }
+                 else
+                 {
+                    await App.MainNavigation.DisplayAlert("Error", "Wrong password!", "ok");
+                }
+             }
+            else
+             {
+                await App.MainNavigation.DisplayAlert("Error", "Wrong symbols", "ok");
+             }
         }
+
+        private bool CheckPassword(string password) => password == _userProfile.Password;
     }
 }
