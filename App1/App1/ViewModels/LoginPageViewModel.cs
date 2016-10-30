@@ -60,7 +60,7 @@ namespace App1.ViewModels
 
         private async Task LogIn()
         {
-             if (!String.IsNullOrWhiteSpace(Password))
+             if (!String.IsNullOrWhiteSpace(Password) && Password.Length>=3 && Password.Length <= 20)
              {
                  if (CheckPassword(Password))
                  {
@@ -73,7 +73,7 @@ namespace App1.ViewModels
              }
             else
              {
-                await App.MainNavigation.DisplayAlert("Error", "Wrong symbols", "ok");
+                await App.MainNavigation.DisplayAlert("Error", "Password must contain more than 3 and less then 20 symbols", "ok");
              }
         }
 
