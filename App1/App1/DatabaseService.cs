@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
 using System.Threading.Tasks;
@@ -36,14 +37,14 @@ namespace App1
             }
         }
 
-        public static async Task SetCurrentUserNotesList(List<UserNote> userNotes)
+        public static async Task SetCurrentUserNotesList(ObservableCollection<UserNote> userNotes)
             => await Memory.InsertObject(LocalUserNotesListKey, userNotes);
 
-        public static async Task<List<UserNote>> GetCurrentUserNotesList()
+        public static async Task<ObservableCollection<UserNote>> GetCurrentUserNotesList()
         {
             try
             {
-                return await Memory.GetObject<List<UserNote>>(LocalUserNotesListKey);
+                return await Memory.GetObject<ObservableCollection<UserNote>>(LocalUserNotesListKey);
             }
             catch (Exception e)
             {

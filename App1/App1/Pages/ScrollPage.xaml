@@ -4,7 +4,7 @@
              x:Class="App1.Pages.ScrollPage">
   
 <ListView ItemsSource="{Binding UserNotes}" ItemSelected="ListView_OnItemSelected"
-          x:Name="ListView">
+          x:Name="listView">
   <ListView.ItemTemplate>
 <DataTemplate >
   <ViewCell>

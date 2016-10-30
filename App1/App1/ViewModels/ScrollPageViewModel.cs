@@ -1,17 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Reflection;
 using System.Threading.Tasks;
 using App1.ViewModels;
 using Xamarin.Forms;
 
 namespace App1.Pages
 {
-    public class ScrollPageViewModel:BaseViewModel, INotifyCollectionChanged
-    {
-        private  List<UserNote> _userNotes;
+    
 
-        public  List<UserNote> UserNotes
+    public class ScrollPageViewModel:BaseViewModel
+    {
+        private  ObservableCollection<UserNote> _userNotes;
+
+        public ObservableCollection<UserNote> UserNotes
         {
             get { return _userNotes; }
             set
@@ -25,12 +29,12 @@ namespace App1.Pages
 
         public ScrollPageViewModel()
         {
-           GetUserNotes();
+            GetUserNotes();
         }
 
         private async void GetUserNotes()
         {
-         UserNotes= await DatabaseService.GetCurrentUserNotesList() ?? new List<UserNote>();
+         UserNotes= await DatabaseService.GetCurrentUserNotesList() ?? new ObservableCollection<UserNote>();
         }
 
         public void ItemSelected(UserNote selectedItem)
@@ -55,8 +59,13 @@ namespace App1.Pages
 
         public async Task DeleteNote(UserNote userNote)
         {
-            await App.MainNavigation.PopAsync(true);           
-
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                UserNotes.Remove(userNote);
+                
+            }); 
+            await App.MainNavigation.PopAsync(true);
+   
         }
 
         public event NotifyCollectionChangedEventHandler CollectionChanged;

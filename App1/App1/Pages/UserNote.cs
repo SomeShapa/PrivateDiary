@@ -58,13 +58,13 @@ namespace App1.Pages
         {
             get
             {
-                if (NoteText.Length <= 30)
+                if (NoteText.Length <= 25)
                 {
                     return NoteText;
                 }
                 else
                 {
-                    return NoteText.Substring(0, 29) + "...";
+                    return NoteText.Substring(0, 24) + "...";
                 }
             }
         }
