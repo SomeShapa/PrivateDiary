@@ -14,11 +14,28 @@ namespace App1.Pages
 
         public ScrollPage()
         {
-            InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, true);
+            NavigationPage.SetHasBackButton(this, false);
+
             BindingContext = new ScrollPageViewModel();
+            InitializeComponent();
             _scrollPageViewModel = (ScrollPageViewModel)BindingContext;
             this.ToolbarItems.Add(new ToolbarItem("Add",null,AddNote));
             
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+   RemoveLoginPage();
+        }
+
+        private static void RemoveLoginPage()
+        {
+            if (App.MainNavigation.Navigation.NavigationStack[0] is LoginPage)
+            {
+                App.MainNavigation.Navigation.RemovePage(App.MainNavigation.Navigation.NavigationStack[0]);
+            }
         }
 
         private void AddNote()
@@ -32,6 +49,5 @@ namespace App1.Pages
             _scrollPageViewModel.ItemSelected((UserNote)e.SelectedItem);
             ((ListView) sender).SelectedItem = null;
         }
-
     }
 }

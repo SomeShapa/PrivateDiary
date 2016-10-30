@@ -12,6 +12,7 @@ namespace App1.Pages
     {
         public LoginPage()
         {
+            NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
             BindingContext= new LoginPageViewModel();
         }

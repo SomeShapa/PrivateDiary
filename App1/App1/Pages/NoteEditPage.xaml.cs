@@ -15,11 +15,14 @@ namespace App1.Pages
         public NoteEditPage(ScrollPageViewModel scrollPageVM, UserNote userNote)
         {
             _scrollPageVm = scrollPageVM;
+           
 
             this.ToolbarItems.Add(new ToolbarItem("Delete", null, DeleteNote));
             BindingContext = userNote;
             InitializeComponent();
         }
+
+
 
         private void DeleteNote()
         {
@@ -32,7 +35,5 @@ namespace App1.Pages
             base.OnDisappearing();
             _scrollPageVm.Save();
         }
-
-       
     }
 }
