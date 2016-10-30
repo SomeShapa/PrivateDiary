@@ -15,5 +15,10 @@ namespace App1.Pages
             InitializeComponent();
             BindingContext= new LoginPageViewModel();
         }
+
+        private void Entry_OnCompleted(object sender, EventArgs e)
+        {
+           ((LoginPageViewModel)BindingContext).LogInCommand.Execute(null);
+        }
     }
 }
