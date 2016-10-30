@@ -18,6 +18,7 @@ namespace App1.Pages
             BindingContext = new ScrollPageViewModel();
             _scrollPageViewModel = (ScrollPageViewModel)BindingContext;
             this.ToolbarItems.Add(new ToolbarItem("Add",null,AddNote));
+            
         }
 
         private void AddNote()
@@ -32,9 +33,5 @@ namespace App1.Pages
             ((ListView) sender).SelectedItem = null;
         }
 
-        private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            var b = 5;
-        }
     }
 }

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Threading.Tasks;
 using App1.ViewModels;
+using Xamarin.Forms;
 
 namespace App1.Pages
 {
-    public class ScrollPageViewModel:BaseViewModel
+    public class ScrollPageViewModel:BaseViewModel, INotifyCollectionChanged
     {
         private  List<UserNote> _userNotes;
 
@@ -16,6 +19,7 @@ namespace App1.Pages
                 if (Equals(value, _userNotes)) return;
                 _userNotes = value;
                 OnPropertyChanged();
+                CollectionChanged?.BeginInvoke(_userNotes, null, null, null);
             }
         }
 
@@ -48,5 +52,13 @@ namespace App1.Pages
         {
            await DatabaseService.SetCurrentUserNotesList(_userNotes);
         }
+
+        public async Task DeleteNote(UserNote userNote)
+        {
+            await App.MainNavigation.PopAsync(true);           
+
+        }
+
+        public event NotifyCollectionChangedEventHandler CollectionChanged;
     }
 }

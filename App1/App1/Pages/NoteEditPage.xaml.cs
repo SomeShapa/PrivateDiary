@@ -15,11 +15,17 @@ namespace App1.Pages
         public NoteEditPage(ScrollPageViewModel scrollPageVM, UserNote userNote)
         {
             _scrollPageVm = scrollPageVM;
+
+            this.ToolbarItems.Add(new ToolbarItem("Delete", null, DeleteNote));
             BindingContext = userNote;
             InitializeComponent();
         }
 
-      
+        private void DeleteNote()
+        {
+            _scrollPageVm.DeleteNote(BindingContext as UserNote);
+        }
+
 
         protected override void OnDisappearing()
         {

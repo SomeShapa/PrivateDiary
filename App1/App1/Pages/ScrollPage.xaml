@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App1.Pages.ScrollPage">
   
-<ListView ItemsSource="{Binding UserNotes}" ItemSelected="ListView_OnItemSelected" ItemTapped="ListView_OnItemTapped">
+<ListView ItemsSource="{Binding UserNotes}" ItemSelected="ListView_OnItemSelected"
+          x:Name="ListView">
   <ListView.ItemTemplate>
 <DataTemplate >
   <ViewCell>
