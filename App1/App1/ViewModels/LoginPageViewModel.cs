@@ -40,13 +40,20 @@ namespace App1.ViewModels
         public LoginPageViewModel()
         {
             GetUserProfile();
-           
         }
 
         private async Task CreateProfile()
         {
-            await DatabaseService.SetCurrentUserProfile(new LoginInfo(null, Password));
-            await App.MainNavigation.PushAsync(new ScrollPage(), true);
+            if (!String.IsNullOrWhiteSpace(Password) && Password.Length >= 3 && Password.Length <= 20)
+            {
+                await DatabaseService.SetCurrentUserProfile(new LoginInfo(null, Password));
+                await App.MainNavigation.PushAsync(new ScrollPage(), true);
+            }
+            else
+            {
+                await App.MainNavigation.DisplayAlert("Error",
+                        "Password must contain more than 3 and less then 20 symbols", "ok");
+            }
         }
 
         private async void GetUserProfile()
