@@ -1,23 +1,66 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:app1="clr-namespace:App1;assembly=App1"
              x:Class="App1.Pages.LoginPage">
-<StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="60" Padding="0,100,0,0">
-  <Frame>
-    <Entry
-      VerticalOptions="Center" 
-      WidthRequest="200"
-      FontSize="17"
-      Placeholder="Password" 
-      IsPassword="True"
-      Text="{Binding Password}" Completed="Entry_OnCompleted"/>
-  </Frame>
-<Button VerticalOptions="Center"
-        WidthRequest="250" 
-        BorderColor="Black" 
-        BorderWidth="3" 
-        HeightRequest="100"
-        Text="{Binding ButtonText}"
-        FontSize="20" Command="{Binding LogInCommand}"/>
-</StackLayout>
+    <AbsoluteLayout Padding="0">
+        <Image Source="{x:Static app1:Images.BackgroundFill}"
+               Aspect="AspectFill"
+               AbsoluteLayout.LayoutFlags="All"
+               AbsoluteLayout.LayoutBounds="0,0,1,1" />
+        <Image Source="{x:Static app1:Images.Icon}"
+               AbsoluteLayout.LayoutFlags="All"
+               AbsoluteLayout.LayoutBounds="0.5,0.2,0.3,0.3" />
+        <ScrollView
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds=".5,.8,.7,.7">
+            <StackLayout
+                Spacing="60"
+                BackgroundColor="Transparent">
+                <Label
+                    HorizontalTextAlignment="Center"
+                    BackgroundColor="Transparent"
+                    VerticalOptions="Center"
+                    WidthRequest="200"
+                    TextColor="White"
+                    FontSize="25"
+                    Text="Private Diary" />
+                <ContentView
+                    BackgroundColor="Transparent">
+                    <StackLayout
+                        Orientation="Horizontal"
+                        Spacing="2"
+                        Padding="5"
+                         
+                        BackgroundColor="#1AFFFFFF">
+                        <Image
+                           
+                            Source="{x:Static app1:Images.Locker}"
+                            HeightRequest="16" />
+                        <Entry
+                          HorizontalOptions="FillAndExpand"
+                            BackgroundColor="Transparent"
+                            VerticalOptions="Center"
+                            WidthRequest="200"
+                            TextColor="White"
+                            PlaceholderColor="White"
+                            FontSize="17"
+                            Placeholder="Password"
+                            IsPassword="True"
+                            Text="{Binding Password}" Completed="Entry_OnCompleted" />
+                    </StackLayout>
+                </ContentView>
+                <Button
+                    VerticalOptions="Center"
+                    BackgroundColor="#1AFFFFFF"
+                    WidthRequest="250"
+                    BorderWidth="3"
+                    HeightRequest="100"
+                    Text="{Binding ButtonText}"
+                    TextColor="White"
+                    FontSize="20" Command="{Binding LogInCommand}" />
+            </StackLayout>
+        </ScrollView>
+    </AbsoluteLayout>
 </ContentPage>

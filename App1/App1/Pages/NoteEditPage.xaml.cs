@@ -17,12 +17,16 @@ namespace App1.Pages
             _scrollPageVm = scrollPageVM;
            
 
-            this.ToolbarItems.Add(new ToolbarItem("Delete", null, DeleteNote));
+            this.ToolbarItems.Add(new ToolbarItem(String.Empty, Images.DeleteIcon, DeleteNote));
             BindingContext = userNote;
             InitializeComponent();
         }
 
-
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            Editor.Focus();
+        }
 
         private void DeleteNote()
         {

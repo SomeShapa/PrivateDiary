@@ -20,7 +20,7 @@ namespace App1.Pages
             BindingContext = new ScrollPageViewModel();
             InitializeComponent();
             _scrollPageViewModel = (ScrollPageViewModel)BindingContext;
-            this.ToolbarItems.Add(new ToolbarItem("Add",null,AddNote));
+            this.ToolbarItems.Add(new ToolbarItem(String.Empty,Images.AddIcon,AddNote));
             
         }
 

@@ -29,7 +29,7 @@ namespace App1.Pages
             }
         }
 
-        public string CreationTimePreview => CreationTime.ToString().Substring(0,11);
+        public string CreationTimePreview => CreationTime.ToString($"dd MMMM{Environment.NewLine}yyyy");
 
         public DateTime LastEditingTime
         {

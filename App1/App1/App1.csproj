@@ -41,6 +41,7 @@
     </Compile>
     <Compile Include="AppConfiguration.cs" />
     <Compile Include="DatabaseService.cs" />
+    <Compile Include="Images.cs" />
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>

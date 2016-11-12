@@ -48,23 +48,23 @@ namespace App1.Pages
         public void AddNote()
         {
             var userNote = new UserNote();
-            UserNotes.Add(userNote);
             App.MainNavigation.PushAsync(new NoteEditPage(this,userNote));
+            UserNotes.Add(userNote);
         }
 
-        public async void Save()
+        public  void Save()
         {
-           await DatabaseService.SetCurrentUserNotesList(_userNotes);
+            DatabaseService.SetCurrentUserNotesList(_userNotes);
         }
 
-        public async Task DeleteNote(UserNote userNote)
+        public void DeleteNote(UserNote userNote)
         {
             Device.BeginInvokeOnMainThread(() =>
             {
                 UserNotes.Remove(userNote);
                 
             }); 
-            await App.MainNavigation.PopAsync(true);
+             App.MainNavigation.PopAsync(true);
    
         }
 

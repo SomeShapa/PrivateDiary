@@ -1,26 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="App1.Pages.ScrollPage" Title="Private Diary">
+             x:Class="App1.Pages.ScrollPage" Title="Private Diary" Padding="4">
   
 <ListView ItemsSource="{Binding UserNotes}" ItemSelected="ListView_OnItemSelected"
-          x:Name="listView">
+          x:Name="listView" HasUnevenRows="False" SeparatorVisibility="None" RowHeight="70">
   <ListView.ItemTemplate>
 <DataTemplate >
   <ViewCell>
-  <AbsoluteLayout>
+    <Frame>
+  <AbsoluteLayout VerticalOptions="CenterAndExpand">
     <Label Text="{Binding NoteTextPreview}"
            FontSize="21"
            TextColor="#3B3A3A"
-           AbsoluteLayout.LayoutBounds="0,0,1,1"
+           AbsoluteLayout.LayoutBounds="0,0,0.8,1"
            AbsoluteLayout.LayoutFlags="All" />
     <Label Text="{Binding CreationTimePreview}" 
            FontSize="12"
-           TextColor="Gray"
-           AbsoluteLayout.LayoutBounds="1,0,0.1,1"
-           AbsoluteLayout.LayoutFlags="All" />
+           TextColor="#9B808080"
+           AbsoluteLayout.LayoutBounds="1,0,-1,-1"
+           AbsoluteLayout.LayoutFlags="PositionProportional" />
     </AbsoluteLayout>
-  
+  </Frame>
   </ViewCell>
 
 </DataTemplate>  
