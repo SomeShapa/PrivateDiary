@@ -14,9 +14,9 @@
                AbsoluteLayout.LayoutBounds="0.5,0.2,0.3,0.3" />
         <ScrollView
             AbsoluteLayout.LayoutFlags="All"
-            AbsoluteLayout.LayoutBounds=".5,.8,.7,.7">
+            AbsoluteLayout.LayoutBounds=".5,0.9,.7,.5">
             <StackLayout
-                Spacing="60"
+                Spacing="30"
                 BackgroundColor="Transparent">
                 <Label
                     HorizontalTextAlignment="Center"

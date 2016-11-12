@@ -25,7 +25,10 @@ namespace App1.Pages
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            Editor.Focus();
+            if (Editor.Text == String.Empty)
+            {
+                Editor.Focus();
+            }
         }
 
         private void DeleteNote()
