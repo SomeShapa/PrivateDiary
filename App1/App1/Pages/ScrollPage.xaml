@@ -10,7 +10,7 @@
   <ViewCell>
     <Frame>
   <AbsoluteLayout VerticalOptions="CenterAndExpand">
-    <Label Text="{Binding NoteTextPreview}"
+    <Label Text="{Binding NoteTextPreview}" 
            FontSize="21"
            TextColor="#3B3A3A"
            AbsoluteLayout.LayoutBounds="0,0,0.8,1"

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using App1.ViewModels;
 using Xamarin.Forms;
 
 namespace App1.Pages
@@ -12,12 +12,12 @@ namespace App1.Pages
     {
         private ScrollPageViewModel _scrollPageViewModel;
 
-        public ScrollPage()
+        public ScrollPage(IDataBaseService databaseService)
         {
             NavigationPage.SetHasNavigationBar(this, true);
             NavigationPage.SetHasBackButton(this, false);
 
-            BindingContext = new ScrollPageViewModel();
+            BindingContext = new ScrollPageViewModel(databaseService);
             InitializeComponent();
             _scrollPageViewModel = (ScrollPageViewModel)BindingContext;
             this.ToolbarItems.Add(new ToolbarItem(String.Empty,Images.AddIcon,AddNote));

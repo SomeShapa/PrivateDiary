@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Reflection;
-using System.Threading.Tasks;
-using App1.ViewModels;
+using App1.Pages;
 using Xamarin.Forms;
 
-namespace App1.Pages
+namespace App1.ViewModels
 {
-    
-
     public class ScrollPageViewModel:BaseViewModel
     {
+        public IDataBaseService DatabaseService { get; set; }
         private  ObservableCollection<UserNote> _userNotes;
 
         public ObservableCollection<UserNote> UserNotes
@@ -27,16 +22,19 @@ namespace App1.Pages
             }
         }
 
-        public ScrollPageViewModel()
+        public ScrollPageViewModel(IDataBaseService databaseService)
         {
+            DatabaseService = databaseService;
             GetUserNotes();
         }
+
 
         private async void GetUserNotes()
         {
          UserNotes= await DatabaseService.GetCurrentUserNotesList() ?? new ObservableCollection<UserNote>();
         }
 
+    
         public void ItemSelected(UserNote selectedItem)
         {
             if (selectedItem != null)

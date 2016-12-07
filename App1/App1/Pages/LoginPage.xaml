@@ -51,7 +51,7 @@
                             Text="{Binding Password}" Completed="Entry_OnCompleted" />
                     </StackLayout>
                 </ContentView>
-                <Button
+                <Button 
                     VerticalOptions="Center"
                     BackgroundColor="#1AFFFFFF"
                     WidthRequest="250"

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using App1.ViewModels;
 using Xamarin.Forms;
 
 namespace App1.Pages
@@ -25,9 +25,9 @@ namespace App1.Pages
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            if (Editor.Text == String.Empty)
+            if (TextEditor.Text == String.Empty)
             {
-                Editor.Focus();
+                TextEditor.Focus();
             }
         }
 

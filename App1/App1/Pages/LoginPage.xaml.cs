@@ -14,7 +14,7 @@ namespace App1.Pages
         {
             NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
-            BindingContext= new LoginPageViewModel();
+            BindingContext= new LoginPageViewModel(new DatabaseService());
         }
 
         private void Entry_OnCompleted(object sender, EventArgs e)

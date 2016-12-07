@@ -9,23 +9,26 @@ using App1.Pages;
 
 namespace App1
 {
-    public class DatabaseService
+    public class DatabaseService: IDataBaseService
     {
         private const string LocalUserCredKey = "LocalUserCred";
         private const string LocalUserNotesListKey = "LocalUserNotesList";
 
-        
+        public DatabaseService()
+        {
+            Init();
+        }
         private static IBlobCache Memory => BlobCache.LocalMachine;
 
-        public static void Init()
+        public  void Init()
         {
             BlobCache.ApplicationName = AppConfiguration.AppName;
         }
 
-        public static async Task SetCurrentUserProfile(LoginInfo loginInfo)
+        public  async Task SetCurrentUserProfile(LoginInfo loginInfo)
           => await Memory.InsertObject(LocalUserCredKey, loginInfo);
 
-        public static async Task<LoginInfo> GetCurrentUserProfile()
+        public  async Task<LoginInfo> GetCurrentUserProfile()
         {
             try
             {
@@ -37,10 +40,10 @@ namespace App1
             }
         }
 
-        public static async Task SetCurrentUserNotesList(ObservableCollection<UserNote> userNotes)
+        public  async Task SetCurrentUserNotesList(ObservableCollection<UserNote> userNotes)
             => await Memory.InsertObject(LocalUserNotesListKey, userNotes);
 
-        public static async Task<ObservableCollection<UserNote>> GetCurrentUserNotesList()
+        public  async Task<ObservableCollection<UserNote>> GetCurrentUserNotesList()
         {
             try
             {
@@ -53,6 +56,21 @@ namespace App1
         }
 
 
+
+    }
+
+    public  interface IDataBaseService
+    {
+          void Init();
+
+           Task SetCurrentUserProfile(LoginInfo loginInfo);
+
+        Task<LoginInfo> GetCurrentUserProfile();
+
+
+        Task SetCurrentUserNotesList(ObservableCollection<UserNote> userNotes);
+
+       Task<ObservableCollection<UserNote>> GetCurrentUserNotesList();
 
     }
 }

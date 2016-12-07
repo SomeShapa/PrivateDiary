@@ -3,6 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App1.Pages.NoteEditPage" Title="Edit note">
   
-  <Editor x:Name="Editor" Text="{Binding NoteText}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" FontSize="21"/>
+  <Editor x:Name="TextEditor"  Text="{Binding NoteText}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" FontSize="21"/>
 
 </ContentPage>
